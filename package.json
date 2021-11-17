@@ -15,5 +15,20 @@
   },
   "dependencies": {
     "nekos.life": "^2.0.7"
-  }
+  },
+  "name": "@totoboto4-module/totoboto4-module-nekoslife",
+  "description": "This template is used for creating modules for the [totoboto4 Discord Bot](https://github.com/totobono4/totoboto4).   You can clone `totoboto4` and add any modules anyone will create with this.",
+  "version": "1.0.0",
+  "main": "module.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/totobono4/totoboto4-module-nekoslife.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/totobono4/totoboto4-module-nekoslife/issues"
+  },
+  "homepage": "https://github.com/totobono4/totoboto4-module-nekoslife#readme"
 }
