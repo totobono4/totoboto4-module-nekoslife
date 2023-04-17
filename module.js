@@ -171,11 +171,11 @@ class Module {
       embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, msg)]
     });
     else if (!victim) interaction.reply({
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, `${user.username}.${interaction.commandName}()`)]
+      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, `${user.username}.${interaction.commandName}();`)]
     });
     else interaction.reply({
       content: userMention(victim.id),
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, `${user.username}.${interaction.commandName}(${victim.username})`)]
+      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, `${user.username}.${interaction.commandName}(${victim.username});`)]
     });
   }
 
