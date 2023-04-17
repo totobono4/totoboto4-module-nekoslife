@@ -3,6 +3,7 @@ const NekosLife = require('nekos.life')
 const nekoclient = new NekosLife()
 
 const { actionCommands } = require('./commands.json')
+const prefix = 'nl'
 
 class Module {
   constructor () {
@@ -12,16 +13,16 @@ class Module {
     this.commands = [
       ...actionCommands.map(
         actionCommand => new SlashCommandBuilder()
-          .setName(actionCommand.name).setDescription(actionCommand.description)
+          .setName(`${prefix}-${actionCommand.name}`).setDescription(actionCommand.description)
           .addUserOption(option => option.setName('victim').setDescription('Your victim'))
       ),
-      new SlashCommandBuilder().setName('why').setDescription('Just why ?'),
-      new SlashCommandBuilder().setName('cattext').setDescription('I wonder what this command do OwO'),
-      new SlashCommandBuilder().setName('owoify').setDescription('OwOify a text !')
-        .addStringOption(option => option.setName('boring-text').setDescription('Not OwOtext').setRequired(true)),
-      new SlashCommandBuilder().setName('eightball').setDescription('You know what I mean')
-        .addStringOption(option => option.setName('question').setDescription('ur question').setRequired(true)),
-      new SlashCommandBuilder().setName('fact').setDescription('Some facts for you')
+      new SlashCommandBuilder().setName(`${prefix}-why`).setDescription('Just why ?'),
+      new SlashCommandBuilder().setName(`${prefix}-cattext`).setDescription('I wonder what this command do OwO'),
+      new SlashCommandBuilder().setName(`${prefix}-owoify`).setDescription('OwOify a text !')
+        .addStringOption(option => option.setName(`${prefix}-boring-text`).setDescription('Not OwOtext').setRequired(true)),
+      new SlashCommandBuilder().setName(`${prefix}-eightball`).setDescription('You know what I mean')
+        .addStringOption(option => option.setName(`${prefix}-question`).setDescription('ur question').setRequired(true)),
+      new SlashCommandBuilder().setName(`${prefix}-fact`).setDescription('Some facts for you')
     ]
   }
 
@@ -34,26 +35,27 @@ class Module {
       const commandName = interaction.commandName
 
       switch (commandName) {
-        case 'why':
+        case `${prefix}-why`:
           this.why(interaction)
           break
-        case 'cattext':
+        case `${prefix}-cattext`:
           this.catText(interaction)
           break
-        case 'owoify':
+        case `${prefix}-owoify`:
           this.OwOify(interaction)
           break
-        case 'eightball':
+        case `${prefix}-eightball`:
           this.eightBall(interaction)
           break
-        case 'fact':
+        case `${prefix}-fact`:
           this.fact(interaction)
           break
         default:
-          if (actionCommands.map(actionCommand => actionCommand.name).includes(commandName)) {
-            this.actions(interaction, nekoclient[commandName])
-            break
-          }
+          actionCommands.forEach(actionCommand => {
+            if (`${prefix}-${actionCommand.name}` === commandName) {
+              this.actions(interaction, nekoclient[actionCommand.name])
+            }
+          })
           break
       }
     })
