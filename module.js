@@ -1,124 +1,130 @@
-const { log } = require('console');
-const { Client, EmbedBuilder, MessageFlags, SlashCommandBuilder, SlashCommandSubcommandBuilder, userMention, User } = require('discord.js');
-const NekosLife = require('nekos.life');
-const nekoclient = new NekosLife();
+const { EmbedBuilder, SlashCommandBuilder, userMention } = require('discord.js')
+const NekosLife = require('nekos.life')
+const nekoclient = new NekosLife()
 
-const {actionCommands} = require('./commands.json')
+const { actionCommands } = require('./commands.json')
 
 class Module {
-  constructor() {
-    this.name = 'NekosLife';
-    this.version = '1.0.0';
+  constructor () {
+    this.name = 'NekosLife'
+    this.version = '1.0.0'
 
     this.commands = [
       ...actionCommands.map(
         actionCommand => new SlashCommandBuilder()
-        .setName(actionCommand.name).setDescription(actionCommand.description)
-        .addUserOption(option => option.setName('victim').setDescription('Your victim'))
+          .setName(actionCommand.name).setDescription(actionCommand.description)
+          .addUserOption(option => option.setName('victim').setDescription('Your victim'))
       ),
-      new SlashCommandBuilder()        .setName('why')        .setDescription('Just why ?'),
-      new SlashCommandBuilder()        .setName('cattext')    .setDescription('I wonder what this command do OwO'),
-      new SlashCommandBuilder()        .setName('owoify')     .setDescription('OwOify a text !')
-      .addStringOption(option => option.setName('boring-text').setDescription('Not OwOtext').setRequired(true)),
-      new SlashCommandBuilder()        .setName('eightball')  .setDescription('You know what I mean')
-      .addStringOption(option => option.setName('question')   .setDescription('ur question').setRequired(true)),
-      new SlashCommandBuilder()        .setName('fact')       .setDescription('Some facts for you'),
+      new SlashCommandBuilder().setName('why').setDescription('Just why ?'),
+      new SlashCommandBuilder().setName('cattext').setDescription('I wonder what this command do OwO'),
+      new SlashCommandBuilder().setName('owoify').setDescription('OwOify a text !')
+        .addStringOption(option => option.setName('boring-text').setDescription('Not OwOtext').setRequired(true)),
+      new SlashCommandBuilder().setName('eightball').setDescription('You know what I mean')
+        .addStringOption(option => option.setName('question').setDescription('ur question').setRequired(true)),
+      new SlashCommandBuilder().setName('fact').setDescription('Some facts for you')
     ]
   }
 
   /**
-   * 
-   * @param {Client} client 
+   *
+   * @param {Client} client
    */
-  launch(client) {
-    client.on("interactionCreate", (interaction) => {
+  launch (client) {
+    client.on('interactionCreate', (interaction) => {
       const commandName = interaction.commandName
 
       switch (commandName) {
         case 'why':
           this.why(interaction)
-          break;
+          break
         case 'cattext':
           this.catText(interaction)
-          break;
+          break
         case 'owoify':
           this.OwOify(interaction)
-          break;
+          break
         case 'eightball':
           this.eightBall(interaction)
-          break;
+          break
         case 'fact':
           this.fact(interaction)
-          break;
+          break
         default:
           if (actionCommands.map(actionCommand => actionCommand.name).includes(commandName)) {
             this.actions(interaction, nekoclient[commandName])
-            break;
+            break
           }
-          break;
+          break
       }
     })
   }
 
-  async actions(interaction, action) {
+  async actions (interaction, action) {
     const user = interaction.user
     const victim = interaction.options.getUser('victim')
-    const {msg, url} = await action()
+    const { msg, url } = await action()
 
-    if (msg) interaction.reply({
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, msg)]
-    });
-    else if (!victim) interaction.reply({
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, `${user.username}.${interaction.commandName}();`)]
-    });
-    else interaction.reply({
-      content: userMention(victim.id),
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, `${user.username}.${interaction.commandName}(${victim.username});`)]
-    });
+    if (msg) {
+      interaction.reply({
+        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, msg)]
+      })
+    } else if (!victim) {
+      interaction.reply({
+        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, `${user.username}.${interaction.commandName}();`)]
+      })
+    } else {
+      interaction.reply({
+        content: userMention(victim.id),
+        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, `${user.username}.${interaction.commandName}(${victim.username});`)]
+      })
+    }
   }
 
-  async why(interaction) {
+  async why (interaction) {
     const user = interaction.user
-    const {why} = await nekoclient.why()
+    const { why } = await nekoclient.why()
 
     interaction.reply({
       embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, why)]
-    });
+    })
   }
 
-  async catText(interaction) {
+  async catText (interaction) {
     const user = interaction.user
-    const {cat} = await nekoclient.catText()
+    const { cat } = await nekoclient.catText()
 
     interaction.reply({
       embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, cat)]
-    });
+    })
   }
 
-  async OwOify(interaction) {
+  async OwOify (interaction) {
     const user = interaction.user
     const boringText = interaction.options.getString('boring-text')
-    const {msg, owo} = await nekoclient.OwOify({text: boringText})
+    const { msg, owo } = await nekoclient.OwOify({ text: boringText })
 
-    if (msg) interaction.reply({
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, msg)]
-    });
-    else interaction.reply({
-      embeds: [
-        this.NekosEmbedBuilder(
-          user,
-          user.avatarURL(),
+    if (msg) {
+      interaction.reply({
+        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, msg)]
+      })
+    } else {
+      interaction.reply({
+        embeds: [
+          this.NekosEmbedBuilder(
+            user,
+            user.avatarURL(),
           `NekosLife ${interaction.commandName}`,
           null,
           `${user.username}: ${boringText}\nowo: ${owo}`)
-      ]
-    });
+        ]
+      })
+    }
   }
-  
-  async eightBall(interaction) {
+
+  async eightBall (interaction) {
     const user = interaction.user
     const question = interaction.options.getString('question')
-    const {response, url} = await nekoclient.eightBall()
+    const { response, url } = await nekoclient.eightBall()
 
     interaction.reply({
       embeds: [
@@ -129,19 +135,19 @@ class Module {
           url,
           `${user.username}: ${question}\nresponse: ${response}`)
       ]
-    });
+    })
   }
 
-  async fact(interaction) {
+  async fact (interaction) {
     const user = interaction.user
-    const {fact} = await nekoclient.fact()
+    const { fact } = await nekoclient.fact()
 
     interaction.reply({
       embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, fact)]
-    });
+    })
   }
 
-  NekosEmbedBuilder(author, thumbnail, title, url, description) {
+  NekosEmbedBuilder (author, thumbnail, title, url, description) {
     return new EmbedBuilder()
       .setColor('Navy')
       .setAuthor({
@@ -153,9 +159,9 @@ class Module {
       .setDescription(description)
       .setImage(url)
       .setFooter({
-        text: "totoboto4 NekosLife services"
+        text: 'totoboto4 NekosLife services'
       })
-      .setTimestamp(new Date());
+      .setTimestamp(new Date())
   }
 }
 
