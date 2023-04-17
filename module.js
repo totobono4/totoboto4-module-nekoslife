@@ -192,8 +192,6 @@ class Module {
     const user = interaction.user
     const {cat} = await nekoclient.catText()
 
-    console.log(catTextRes)
-
     interaction.reply({
       embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, cat)]
     });
