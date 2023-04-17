@@ -3,65 +3,26 @@ const { Client, EmbedBuilder, MessageFlags, SlashCommandBuilder, SlashCommandSub
 const NekosLife = require('nekos.life');
 const nekoclient = new NekosLife();
 
+const {actionCommands} = require('./commands.json')
+
 class Module {
   constructor() {
     this.name = 'NekosLife';
     this.version = '1.0.0';
 
     this.commands = [
-      new SlashCommandBuilder()        .setName('tickle')     .setDescription('tickle someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('slap')       .setDescription('slap someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('poke')       .setDescription('poke someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('pat')        .setDescription('pat someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('neko')       .setDescription('a cute neko appears !')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('meow')       .setDescription('meow someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('lizard')     .setDescription('lizard someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('kiss')       .setDescription('kiss someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('hug')        .setDescription('hug someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('foxgirl')    .setDescription('a cute foxgirl appears !')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('feed')       .setDescription('feed someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('cuddle')     .setDescription('cuddle someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      ...actionCommands.map(
+        actionCommand => new SlashCommandBuilder()
+        .setName(actionCommand.name).setDescription(actionCommand.description)
+        .addUserOption(option => option.setName('victim').setDescription('Your victim'))
+      ),
       new SlashCommandBuilder()        .setName('why')        .setDescription('Just why ?'),
       new SlashCommandBuilder()        .setName('cattext')    .setDescription('I wonder what this command do OwO'),
       new SlashCommandBuilder()        .setName('owoify')     .setDescription('OwOify a text !')
       .addStringOption(option => option.setName('boring-text').setDescription('Not OwOtext').setRequired(true)),
-      new SlashCommandBuilder()        .setName('nekogif')    .setDescription('Neko gifs are cuter than neko')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
       new SlashCommandBuilder()        .setName('eightball')  .setDescription('You know what I mean')
       .addStringOption(option => option.setName('question')   .setDescription('ur question').setRequired(true)),
       new SlashCommandBuilder()        .setName('fact')       .setDescription('Some facts for you'),
-      new SlashCommandBuilder()        .setName('kemonomimi') .setDescription('We all love kemonomimi')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('holo')       .setDescription('The best waifu')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('smug')       .setDescription('smug someone')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('baka')       .setDescription('Everyone is a baka so say it')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('woof')       .setDescription('woof woof woof !')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('wallpaper')  .setDescription('Y\'a need some Wallpapers ?')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('goose')      .setDescription('gooses again')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('gecg')       .setDescription('gecg, best meme of all time')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('avatar')     .setDescription('Give me that !')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('waifu')      .setDescription('Waifu generator')
-      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim'))
     ]
   }
 
@@ -71,43 +32,9 @@ class Module {
    */
   launch(client) {
     client.on("interactionCreate", (interaction) => {
-      switch (interaction.commandName) {
-        case 'tickle':
-          this.actions(interaction, nekoclient.tickle)
-          break;
-        case 'slap':
-          this.actions(interaction, nekoclient.slap)
-          break;
-        case 'poke':
-          this.actions(interaction, nekoclient.poke)
-          break;
-        case 'pat':
-          this.actions(interaction, nekoclient.pat)
-            break;
-        case 'neko':
-          this.actions(interaction, nekoclient.neko)
-              break;
-        case 'meow':
-          this.actions(interaction, nekoclient.meow)
-          break;
-        case 'lizard':
-          this.actions(interaction, nekoclient.lizard)
-          break;
-        case 'kiss':
-          this.actions(interaction, nekoclient.kiss)
-          break;
-        case 'hug':
-          this.actions(interaction, nekoclient.hug)
-          break;
-        case 'foxgirl':
-          this.actions(interaction, nekoclient.foxGirl)
-          break;
-        case 'feed':
-          this.actions(interaction, nekoclient.feed)
-          break;
-        case 'cuddle':
-          this.actions(interaction, nekoclient.cuddle)
-          break;
+      const commandName = interaction.commandName
+
+      switch (commandName) {
         case 'why':
           this.why(interaction)
           break;
@@ -123,40 +50,11 @@ class Module {
         case 'fact':
           this.fact(interaction)
           break;
-        case 'nekogif':
-          this.actions(interaction, nekoclient.nekoGif)
-          break;
-        case 'kemonomimi':
-          this.actions(interaction, nekoclient.kemonomimi)
-          break;
-        case 'holo':
-          this.actions(interaction, nekoclient.holo)
-          break;
-        case 'smug':
-          this.actions(interaction, nekoclient.smug)
-          break;
-        case 'baka':
-          this.actions(interaction, nekoclient.baka)
-          break;
-        case 'woof':
-          this.actions(interaction, nekoclient.woof)
-          break;
-        case 'wallpaper':
-          this.actions(interaction, nekoclient.wallpaper)
-          break;
-        case 'goose':
-          this.actions(interaction, nekoclient.goose)
-          break;
-        case 'gecg':
-          this.actions(interaction, nekoclient.gecg)
-          break;
-        case 'avatar':
-          this.actions(interaction, nekoclient.avatar)
-          break;
-        case 'waifu':
-          this.actions(interaction, nekoclient.waifu)
-          break;
         default:
+          if (actionCommands.map(actionCommand => actionCommand.name).includes(commandName)) {
+            this.actions(interaction, nekoclient[commandName])
+            break;
+          }
           break;
       }
     })
@@ -206,16 +104,31 @@ class Module {
       embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, msg)]
     });
     else interaction.reply({
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, owo)]
+      embeds: [
+        this.NekosEmbedBuilder(
+          user,
+          user.avatarURL(),
+          `NekosLife ${interaction.commandName}`,
+          null,
+          `${user.username}: ${boringText}\nowo: ${owo}`)
+      ]
     });
   }
   
   async eightBall(interaction) {
     const user = interaction.user
+    const question = interaction.options.getString('question')
     const {response, url} = await nekoclient.eightBall()
 
     interaction.reply({
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, response)]
+      embeds: [
+        this.NekosEmbedBuilder(
+          user,
+          user.avatarURL(),
+          `NekosLife ${interaction.commandName}`,
+          url,
+          `${user.username}: ${question}\nresponse: ${response}`)
+      ]
     });
   }
 

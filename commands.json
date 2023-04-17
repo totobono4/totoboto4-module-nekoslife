@@ -1,0 +1,96 @@
+{
+    "actionCommands": [
+        {
+            "name": "tickle",
+            "description": "tickle someone"
+        },
+        {
+            "name": "slap",
+            "description": "slap someone"
+        },
+        {
+            "name": "poke",
+            "description": "poke someone"
+        },
+        {
+            "name": "pat",
+            "description": "pat someone"
+        },
+        {
+            "name": "neko",
+            "description": "a cute neko appears !"
+        },
+        {
+            "name": "meow",
+            "description": "meow someone"
+        },
+        {
+            "name": "lizard",
+            "description": "lizard someone"
+        },
+        {
+            "name": "kiss",
+            "description": "kiss someone"
+        },
+        {
+            "name": "hug",
+            "description": "hug someone"
+        },
+        {
+            "name": "foxgirl",
+            "description": "a cute foxgirl appears !"
+        },
+        {
+            "name": "feed",
+            "description": "feed someone"
+        },
+        {
+            "name": "cuddle",
+            "description": "cuddle someone"
+        },
+        {
+            "name": "nekogif",
+            "description": "Neko gifs are cuter than neko"
+        },
+        {
+            "name": "kemonomimi",
+            "description": "We all love kemonomimi"
+        },
+        {
+            "name": "holo",
+            "description": "The best waifu"
+        },
+        {
+            "name": "smug",
+            "description": "smug someone"
+        },
+        {
+            "name": "baka",
+            "description": "Everyone is a baka so say it"
+        },
+        {
+            "name": "woof",
+            "description": "woof woof woof !"
+        },
+        {
+            "name": "wallpaper",
+            "description": "Y'a need some Wallpapers ?"
+        },
+        {
+            "name": "goose",
+            "description": "gooses again"
+        },
+        {
+            "name": "gecg",
+            "description": "gecg, best meme of all time"
+        },
+        {
+            "name": "avatar",
+            "description": "Give me that !"
+        },
+        {
+            "name": "waifu",
+            "description": "Waifu generator"
+        }
+    ]
+}
