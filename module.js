@@ -9,37 +9,59 @@ class Module {
     this.version = '1.0.0';
 
     this.commands = [
-      new SlashCommandBuilder()        .setName('tickle')     .setDescription('tickle someone'),
-      new SlashCommandBuilder()        .setName('slap')       .setDescription('slap someone'),
-      new SlashCommandBuilder()        .setName('poke')       .setDescription('poke someone'),
-      new SlashCommandBuilder()        .setName('pat')        .setDescription('pat someone'),
-      new SlashCommandBuilder()        .setName('neko')       .setDescription('a cute neko appears !'),
-      new SlashCommandBuilder()        .setName('meow')       .setDescription('meow someone'),
-      new SlashCommandBuilder()        .setName('lizard')     .setDescription('lizard someone'),
-      new SlashCommandBuilder()        .setName('kiss')       .setDescription('kiss someone'),
+      new SlashCommandBuilder()        .setName('tickle')     .setDescription('tickle someone')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('slap')       .setDescription('slap someone')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('poke')       .setDescription('poke someone')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('pat')        .setDescription('pat someone')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('neko')       .setDescription('a cute neko appears !')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('meow')       .setDescription('meow someone')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('lizard')     .setDescription('lizard someone')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('kiss')       .setDescription('kiss someone')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
       new SlashCommandBuilder()        .setName('hug')        .setDescription('hug someone')
       .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
-      new SlashCommandBuilder()        .setName('foxgirl')    .setDescription('a cute foxgirl appears !'),
-      new SlashCommandBuilder()        .setName('feed')       .setDescription('feed someone'),
-      new SlashCommandBuilder()        .setName('cuddle')     .setDescription('cuddle someone'),
+      new SlashCommandBuilder()        .setName('foxgirl')    .setDescription('a cute foxgirl appears !')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('feed')       .setDescription('feed someone')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('cuddle')     .setDescription('cuddle someone')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
       new SlashCommandBuilder()        .setName('why')        .setDescription('Just why ?'),
       new SlashCommandBuilder()        .setName('cattext')    .setDescription('I wonder what this command do OwO'),
       new SlashCommandBuilder()        .setName('owoify')     .setDescription('OwOify a text !')
       .addStringOption(option => option.setName('boring-text').setDescription('Not OwOtext').setRequired(true)),
-      new SlashCommandBuilder()        .setName('nekogif')    .setDescription('Neko gifs are cuter than neko'),
+      new SlashCommandBuilder()        .setName('nekogif')    .setDescription('Neko gifs are cuter than neko')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
       new SlashCommandBuilder()        .setName('eightball')  .setDescription('You know what I mean')
       .addStringOption(option => option.setName('question')   .setDescription('ur question').setRequired(true)),
       new SlashCommandBuilder()        .setName('fact')       .setDescription('Some facts for you'),
-      new SlashCommandBuilder()        .setName('kemonomimi') .setDescription('We all love kemonomimi'),
-      new SlashCommandBuilder()        .setName('holo')       .setDescription('The best waifu'),
-      new SlashCommandBuilder()        .setName('smug')       .setDescription('smug someone'),
-      new SlashCommandBuilder()        .setName('baka')       .setDescription('Everyone is a baka so say it'),
-      new SlashCommandBuilder()        .setName('woof')       .setDescription('woof woof woof !'),
-      new SlashCommandBuilder()        .setName('wallpaper')  .setDescription('Y\'a need some Wallpapers ?'),
-      new SlashCommandBuilder()        .setName('goose')      .setDescription('gooses again'),
-      new SlashCommandBuilder()        .setName('gecg')       .setDescription('gecg, best meme of all time'),
-      new SlashCommandBuilder()        .setName('avatar')     .setDescription('Give me that !'),
+      new SlashCommandBuilder()        .setName('kemonomimi') .setDescription('We all love kemonomimi')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('holo')       .setDescription('The best waifu')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('smug')       .setDescription('smug someone')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('baka')       .setDescription('Everyone is a baka so say it')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('woof')       .setDescription('woof woof woof !')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('wallpaper')  .setDescription('Y\'a need some Wallpapers ?')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('goose')      .setDescription('gooses again')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('gecg')       .setDescription('gecg, best meme of all time')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
+      new SlashCommandBuilder()        .setName('avatar')     .setDescription('Give me that !')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim')),
       new SlashCommandBuilder()        .setName('waifu')      .setDescription('Waifu generator')
+      .addUserOption(option => option  .setName('victim')     .setDescription('Your victim'))
     ]
   }
 
@@ -144,8 +166,6 @@ class Module {
     const user = interaction.user
     const victim = interaction.options.getUser('victim')
     const {msg, url} = await action()
-
-    console.log(msg, url)
 
     if (msg) interaction.reply({
       embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, msg)]
