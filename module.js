@@ -68,16 +68,16 @@ class Module {
 
     if (msg) {
       interaction.reply({
-        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, msg)]
+        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), interaction.commandName, null, msg)]
       })
     } else if (!victim) {
       interaction.reply({
-        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, `${user.username}.${interaction.commandName}();`)]
+        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), interaction.commandName, url, `${user.username}.${interaction.commandName}();`)]
       })
     } else {
       interaction.reply({
         content: userMention(victim.id),
-        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, url, `${user.username}.${interaction.commandName}(${victim.username});`)]
+        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), interaction.commandName, url, `${user.username}.${interaction.commandName}(${victim.username});`)]
       })
     }
   }
@@ -87,7 +87,7 @@ class Module {
     const { why } = await nekoclient.why()
 
     interaction.reply({
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, why)]
+      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), interaction.commandName, null, why)]
     })
   }
 
@@ -96,7 +96,7 @@ class Module {
     const { cat } = await nekoclient.catText()
 
     interaction.reply({
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, cat)]
+      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), interaction.commandName, null, cat)]
     })
   }
 
@@ -107,17 +107,12 @@ class Module {
 
     if (msg) {
       interaction.reply({
-        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, msg)]
+        embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), interaction.commandName, null, msg)]
       })
     } else {
       interaction.reply({
         embeds: [
-          this.NekosEmbedBuilder(
-            user,
-            user.avatarURL(),
-          `NekosLife ${interaction.commandName}`,
-          null,
-          `${user.username}: ${boringText}\nowo: ${owo}`)
+          this.NekosEmbedBuilder(user, user.avatarURL(), interaction.commandName, null, `${user.username}: ${boringText}\nowo: ${owo}`)
         ]
       })
     }
@@ -129,13 +124,7 @@ class Module {
     const { response, url } = await nekoclient.eightBall()
 
     interaction.reply({
-      embeds: [
-        this.NekosEmbedBuilder(
-          user,
-          user.avatarURL(),
-          `NekosLife ${interaction.commandName}`,
-          url,
-          `${user.username}: ${question}\nresponse: ${response}`)
+      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), interaction.commandName, url, `${user.username}: ${question}\nresponse: ${response}`)
       ]
     })
   }
@@ -145,7 +134,7 @@ class Module {
     const { fact } = await nekoclient.fact()
 
     interaction.reply({
-      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), `NekosLife ${interaction.commandName}`, null, fact)]
+      embeds: [this.NekosEmbedBuilder(user, user.avatarURL(), interaction.commandName, null, fact)]
     })
   }
 
