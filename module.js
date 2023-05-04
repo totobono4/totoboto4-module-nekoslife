@@ -19,9 +19,9 @@ class Module {
       new SlashCommandBuilder().setName(`${prefix}-why`).setDescription('Just why ?'),
       new SlashCommandBuilder().setName(`${prefix}-cattext`).setDescription('I wonder what this command do OwO'),
       new SlashCommandBuilder().setName(`${prefix}-owoify`).setDescription('OwOify a text !')
-        .addStringOption(option => option.setName(`${prefix}-boring-text`).setDescription('Not OwOtext').setRequired(true)),
+        .addStringOption(option => option.setName('boring-text').setDescription('Not OwOtext').setRequired(true)),
       new SlashCommandBuilder().setName(`${prefix}-eightball`).setDescription('You know what I mean')
-        .addStringOption(option => option.setName(`${prefix}-question`).setDescription('ur question').setRequired(true)),
+        .addStringOption(option => option.setName('question').setDescription('ur question').setRequired(true)),
       new SlashCommandBuilder().setName(`${prefix}-fact`).setDescription('Some facts for you')
     ]
   }
