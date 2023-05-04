@@ -50,6 +50,9 @@ class Module {
         case `${prefix}-fact`:
           this.fact(interaction)
           break
+        case `${prefix}-nekogif`:
+          this.actions(interaction, nekoclient.nekoGif)
+          break
         default:
           actionCommands.forEach(actionCommand => {
             if (`${prefix}-${actionCommand.name}` === commandName) {
