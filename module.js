@@ -1,12 +1,17 @@
-const { EmbedBuilder, SlashCommandBuilder, userMention } = require('discord.js')
+const { Client, EmbedBuilder, SlashCommandBuilder, userMention, Events } = require('discord.js')
 const NekosLife = require('nekos.life')
 const nekoclient = new NekosLife()
 
 const { actionCommands } = require('./commands.json')
+const { Debugger, Module } = require('totoboto4-core')
+const debug = new Debugger()
+
 const prefix = 'nl'
 
-class Module {
+class NekosLifeModule extends Module {
   constructor () {
+    super()
+
     this.name = 'NekosLife'
     this.version = '1.0.0'
 
@@ -27,11 +32,15 @@ class Module {
   }
 
   /**
-   *
-   * @param {Client} client
+   * @param {} data 
    */
-  launch (client) {
-    client.on('interactionCreate', (interaction) => {
+  launch (data) {
+    const client = data.client
+
+    debug.addLayer("NekosLife", "nekoslife")
+    debug.debug(debug.layers.NekosLife, debug.types.Debug, 'NekosLife Started!')
+
+    client.on(Events.InteractionCreate, (interaction) => {
       const commandName = interaction.commandName
 
       switch (commandName) {
@@ -65,6 +74,8 @@ class Module {
   }
 
   async actions (interaction, action) {
+    debug.debug(debug.layers.NekosLife, debug.types.Debug, "Action was used.")
+
     const user = interaction.user
     const victim = interaction.options.getUser('victim')
     const { msg, url } = await action()
@@ -159,4 +170,4 @@ class Module {
   }
 }
 
-module.exports = new Module()
+module.exports = new NekosLifeModule()
