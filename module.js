@@ -9,8 +9,8 @@ const debug = new Debugger()
 const prefix = 'nl'
 
 class NekosLifeModule extends Module {
-  constructor () {
-    super()
+  constructor (modulator) {
+    super(modulator)
 
     this.name = 'NekosLife'
     this.version = '1.0.0'
@@ -170,4 +170,4 @@ class NekosLifeModule extends Module {
   }
 }
 
-module.exports = new NekosLifeModule()
+module.exports = NekosLifeModule
