@@ -19,7 +19,8 @@
   "homepage": "https://github.com/totobono4/totoboto4-module-nekoslife#readme",
   "dependencies": {
     "discord.js": "^14.9.0",
-    "nekos.life": "^3.0.0"
+    "nekos.life": "^3.0.0",
+    "totoboto4-core": "github:totobono4/totoboto4-core"
   },
   "devDependencies": {
     "eslint": "^8.38.0",
